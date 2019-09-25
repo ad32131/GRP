@@ -1,0 +1,43 @@
+
+
+{{##def.content:
+
+<div class="content row panel radius">
+
+<h5 id="top">1:1문의</h5>
+<table class="leaders">
+
+
+{{~it.inq :inq_t:index}}
+<thead>
+<tr>
+<td>{{=inq_t.idx}}</td>
+<td>{{=inq_t.title}}</td>
+<td>{{=inq_t.date.format("yyyy년  MM월  dd일  a/p hh시  mm분  ss초")}}</td>
+<td>{{=inq_t.owner}}</td>
+<td>{{=inq_t.on_read}}</td>
+</tr>
+</thead>
+{{~}}
+
+</table>
+
+{{~it.inq :inq_t:index}}
+	<tr>
+	<strong>문의내용</strong></br></br></br>{{=inq_t.content}}
+	</tr>
+	</br></br></br>
+	<tr>
+	<strong>관리자의 답변</strong></br></br></br>{{=inq_t.reply.replace(/\r\n/gi, '<br>')}}
+	</tr>
+{{~}}
+
+
+
+</body>
+
+ {{?it.inq.length > 20 }} <a class="border-button red right" href="#top">Top</a>{{?}}
+</div>
+#}}
+
+{{#def.include('./template/main_old')}}

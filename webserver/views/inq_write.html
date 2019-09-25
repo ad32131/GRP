@@ -1,0 +1,36 @@
+
+
+{{##def.content:
+
+<div class="content row panel radius">
+
+<h5 id="top">문의작성</h5>
+<table class="leaders">
+
+
+
+	<thead><form id="frm" action="/inq_insert0" method="post">
+	<tr>
+	<form action="/inq_insert0" method="post">
+	<td>문의제목<input type="text" name="title" /></td>	
+	</tr>
+	</thead>
+	<td>문의내용<textarea name="content"/></textarea></td>
+	<tr>
+	<td><a onclick="document.getElementById('frm').submit()">작성완료</a></td><td><a href='/inq'>돌아가기 </a></td>
+	</form>
+	</tr>
+
+	
+
+
+</table>
+
+
+</body>
+
+</div>
+#}}
+
+{{#def.include('./template/main_old')}}
+

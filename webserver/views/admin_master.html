@@ -1,0 +1,23 @@
+{{##def.page_title = 'admin_panel' #}}
+
+{{##def.content:
+<div class="row faq panel radius">
+    <h5>betting_crash</h5>
+    <hr>
+    <div class="row contact">
+	admin
+	
+<%	
+	for ( var i=0; i<data.rows.length; i++)
+	{
+%>
+	<tr>
+	<td><%=data.rows[i].username%></td>
+	</tr>
+<%	
+	}
+%>
+    </div>
+</div>
+#}}
+{{#def.include('./template/main_old')}}

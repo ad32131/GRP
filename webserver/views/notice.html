@@ -1,0 +1,38 @@
+
+
+{{##def.content:
+
+<div class="content row panel radius">
+
+<h5 id="top">공지사항</h5>
+<table class="leaders">
+<thead>
+<tr>
+<td>공지번호</td>
+<td>공지제목</td>
+<td>공지날짜</td>
+</tr>
+</thead>
+<tbody>
+
+
+{{~it.notice :notice_t:index}}
+	<tr>
+	
+	<td>{{=notice_t.idx}}</td>	
+	<td><a href="./notice_open?idx={{=notice_t.idx}}">{{=notice_t.title}}</a></td>	
+	<td>{{=notice_t.date.format("yyyy년  MM월  dd일  a/p hh시  mm분  ss초")}}</td>
+	</tr>
+{{~}}
+
+
+</tbody>
+</table>
+
+</body>
+
+ {{?it.notice.length > 20 }} <a class="border-button red right" href="#top">Top</a>{{?}}
+</div>
+#}}
+
+{{#def.include('./template/main_old')}}

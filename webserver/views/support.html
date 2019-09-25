@@ -1,0 +1,53 @@
+{{##def.page_title = '1:1 문의' #}}
+
+{{##def.content:
+<script type="text/javascript">
+    function logout() {
+        if (document.getElementById('logout') ) {
+            if (confirm("Are you sure you want to log out?")) {
+                document.getElementById("logout").submit();
+            }
+        }
+    }
+</script>
+<form action="/logout" method="post" id='logout'></form>
+<div class="content row panel radius">
+
+    <div class="settings">
+        <div class="small-2 columns">
+            <ul class="menu">
+                <li>
+                    <a href="/account">유저기록</a>
+                </li>
+                <li>
+                    <a href="/security">유저설정</a>
+                </li>
+                <li>
+                    <a onclick="logout();">
+                        로그아웃
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="small-10 columns sets-content">
+            <h5>도움이 필요하신가요? 저희에게 문의를 주세요.</h5>
+                <hr>
+                <div class="row contact">
+                    <form action="/support" id="contact" method="post">
+
+    
+
+
+
+                        <label for="message">메세지</label>
+                        <textarea rows="10" id="message" name="message" required> </textarea>
+                        <input type="submit" class="border-button right blue" value="전송"/>
+                    </form>
+
+                </div>
+
+        </div>
+    </div>
+</div>
+#}}
+{{#def.include('./template/main_old')}}

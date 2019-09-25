@@ -1,0 +1,114 @@
+{{##def.page_title = '통계' #}}
+
+{{##def.content:
+    <div class="content row panel radius">
+        <div class="row">
+            <div class="large-6 columns">
+                <h5>Test graph</h5>
+                <small>Generated {{! it.generated }}</small>
+                <table class="stats">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>대기중인 인출:</b><br />
+                            </td>
+                            <td>{{= it.stats.pending_withdrawals.count }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>종말 게임:</b><br />
+                            </td>
+                            <td>{{=it.stats.unterminated_games.count}} </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td><b>매장:</b></td>
+                            <td>{{#def.format: {n: it.stats.deposits.sum} }} bits</td>
+                        </tr>
+                        <tr>
+                            <td><b>인출:</b></td>
+                            <td>{{#def.format: { n: it.stats.withdrawals.sum } }} bits</td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Net:</td>
+                            <td class="strong">{{#def.format: { n: (it.stats.deposits.sum - (it.stats.withdrawals.sum * -1)) } }} bits</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><b>총 배팅:</b></td>
+                            <td>{{#def.format: {n: it.stats.plays.total_bet } }} bits</td>
+                        </tr>
+                        <tr>
+                            <td><b>플레이어가 획득한 현금:</b></td>
+                            <td>{{#def.format: {n: it.stats.plays.cashed_out } }} bits <small>(
+                                   {{= (it.stats.plays.cashed_out / it.stats.plays.total_bet * 100).toFixed(2) }}%
+                                )</small></td>
+                        </tr>
+                        <tr>
+                            <td><b>선수는 상여에서 이겼다:</b></td>
+                            <td>{{#def.format: {n: it.stats.plays.bonused } }} bits <small>(
+                                {{= (it.stats.plays.bonused / it.stats.plays.total_bet * 100).toFixed(2) }}%
+                                )</small></td>
+                        </tr>
+                        <tr>
+                            <td><b>총 플레이어 수: </b></td>
+                            <td>{{#def.format: {n: (9 + it.stats.plays.cashed_out + it.stats.plays.bonused) } }} bits <small>(
+                                {{= ((it.stats.plays.cashed_out + it.stats.plays.bonused) / it.stats.plays.total_bet * 100).toFixed(2) }}%
+                                )</small></td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Our Profit:</td>
+                            <td class="strong">
+                                {{#def.format: {n: it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused  } }} bits
+                                <small>(
+                                    {{= ((it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused ) / it.stats.plays.total_bet * 100).toFixed(2) }}%
+                                    )</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Bankroll:</td>
+                            <td class="strong">
+                                {{#def.format: {n: it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused + it.stats.bankroll_offset } }} bits
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="strong">Max win per game:</td>
+                            <td>
+                                {{#def.format: {n: (it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused + it.stats.bankroll_offset)*0.03 } }} bits
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><b>총 사용자 수:</b></td>
+                            <td>{{=it.stats.users.count}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>총 재생 횟수:</b></td>
+                            <td>{{=it.stats.plays.count }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>총 게임:</b></td>
+                            <td>{{=it.stats.games.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ #}}
+
+{{#def.include('./template/main_old')}}

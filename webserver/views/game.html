@@ -1,0 +1,62 @@
+{{##def.page_title = 'Game Info' #}}
+
+{{##def.content:
+    <div class="row panel radius">
+        <h4>게임#<strong>{{=it.game.id}}회차</strong> 정보</h4>
+        <p>
+            <b>게임 결과: </b> {{#def.format: { n: it.game.game_crash, decimals: 0 } }}x
+        </p>
+        <p>
+            <b>게임 시간: </b>{{=it.game.created}} <small>{{=it.game.timeago}}</small>
+        </p>
+        <hr>
+        <h6>참여유저</h6>
+        <table class="user-table">
+          <thead>
+            <tr>
+                <td>유저들</td>
+                <td>베팅</td>
+                <td>캐쉬아웃</td>
+                <td>보너스</td>
+                <td>이익</td>
+            </tr>
+          </thead>
+          <tbody>
+            {{~it.plays :play:index}}
+                <tr {{?!play.cash_out}}class="lose"{{?}}>
+                    <td>
+                        <strong>
+                            <a href="/user/{{=play.username}}">{{=play.username}}</a>
+                        </strong>
+                    </td>
+                    <td>
+                        {{#def.format: { n: play.bet } }} 원
+                    </td>
+                    <td>
+                        {{? play.cash_out}}
+                        {{#def.format: {n: play.cash_out / play.bet * 100, decimals: 0} }}x
+                        {{??}}
+                        Lose
+                        {{?}}
+                    </td>
+                    <td>
+                        {{? play.bonus }}
+                           {{#def.format: {n: play.bonus/play.bet* 100 * 100, decimals: 0} }}%
+                        {{??}}
+                          -
+                        {{?}}
+                    </td>
+                    <td>
+                        {{#def.format: { n: (play.cash_out ? play.cash_out : 0) - play.bet + ( play.bonus ? play.bonus : 0) , decimals: 0 } }}
+                        bits
+                    </td>
+                </tr>
+            {{~}}
+          </tbody>
+        </table>
+        <h6><b>Hash:</b> <a href="/faq#fair">{{=it.game.hash}}</a></h6>
+    </div>
+
+#}}
+
+{{#def.include('./template/main_old')}}

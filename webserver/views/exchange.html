@@ -1,0 +1,50 @@
+
+
+{{##def.content:
+
+<div class="content row panel radius">
+
+<h5 id="top">환전페이지</h5>
+<table class="leaders">
+<thead>
+<tr>
+<td>회원아이디</td>
+<td>환전요청금액</td>
+<td>요청날짜</td>
+</tr>
+</thead>
+<tbody>
+
+
+{{~it.chex :chex_t:index}}
+	<tr>
+	
+	<td>{{=chex_t.username}}</td>	
+	<td>{{=chex_t.amount}}</td>	
+	<td>{{=chex_t.date.format("yyyy년  MM월  dd일  a/p hh시  mm분  ss초")}}</td>
+	</tr>
+{{~}}
+
+
+</tbody>
+</table>
+
+{{?it.chex.length <1}}
+<form id="frm" action="/chex_insert" method="post">
+<select name="amount">
+{{ for(var i=1;i<=100;i++){ }}
+<option value="{{=i*10000}}"> {{=i*10000}}</option> 
+{{}}}
+</select>
+<input type="hidden" name="type" value="exchange"/>
+<a onclick="document.getElementById('frm').submit()">환전신청</a>
+</form>
+{{?}}
+
+</body>
+
+ {{?it.chex.length > 20 }} <a class="border-button red right" href="#top">Top</a>{{?}}
+</div>
+#}}
+
+{{#def.include('./template/main_old')}}

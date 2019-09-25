@@ -1,0 +1,143 @@
+{{##def.page_title = 'Register' #}}
+
+{{##def.content:
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript">
+		var submitEnabled = false;
+		function enableSubmit() {
+			submitEnabled = true;
+      var s = document.getElementById('registerSubmit');
+      s.style.display = 'block';
+    }
+
+    window.onload = function () {
+        if (document.getElementById('confirmation') !== null) {
+            document.getElementById('confirmation').onchange = validatePassword;
+            document.getElementById('password').onchange = validatePassword;
+        }
+    };
+    function validatePassword() {
+        var password = document.getElementById('password').value;
+        var confirm = document.getElementById('confirmation').value;
+        if (password != confirm) {
+            document.getElementById('confirmation').setCustomValidity("비밀번호가 똑같아야 합니다");
+        } else document.getElementById("confirmation").setCustomValidity('');
+    }
+</script>
+        <div class="register">
+            <form action="/register" method="post" onsubmit="return submitEnabled;">
+                <div class="row">
+                    <div class="large-7 columns input">
+                        <h5>회원가입 <small><a href="login">이미 계정이 있으십니까?</a></small></h5>
+                        <hr>
+                    </div>
+
+                    <div class="large-7 columns input">
+
+                        <div class="row">
+                            <div class="large-3 columns">
+                                <label for="username">사용자계정</label>
+                            </div>
+                            <div class="large-9 columns">
+                                <input id="username" type="text" name="user[name]" value="{{?it.values}}{{!it.values.name}}{{?}}" autocomplete="off" pattern="[A-Za-z0-9_\-]{3,16}" title="Username only allowed alphanumeric, hyphen and underscore" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-7 columns input">
+                        <div class="row">
+                            <div class="large-3 columns">
+                                <label>비밀번호</label>
+                            </div>
+                            <div class="large-9 columns">
+                                <input id="password" type="password" value="{{?it.values}}{{!it.values.password}}{{?}}" name="user[password]" autocomplete="off" pattern=".{7,200}"  required/><small>비밀번호는 7자 이상 사용이 가능합니다.</small>
+ 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-7 columns input">
+                        <div class="row">
+                            <div class="large-3 columns">
+                                <label>비밀번호 확인</label>
+                            </div>
+                            <div class="large-9 columns">
+                                <input id="confirmation" type="password" value="{{?it.values}}{{!it.values.confirm}}{{?}}" name="user[confirm]" autocomplete="off" pattern=".{7,200}" data-equal-id="password" required/>
+                            </div>
+                        </div>
+</div>
+
+
+<div class="large-7 columns input">
+<div class="row">
+									<div class="large-3 columns">
+										<label>휴대폰 번호</label>
+									</div>
+									<div class="large-9 columns">
+										<input id="hp_number" type="text" value="{{?it.values}}{{!it.values.hp_number}}{{?}}" name="user[hp_number]" autocomplete="off" pattern=".{7,200}" placeholder="예:) 010-1234-5678" title="휴대폰 번호는 숫자, '-'로 구성할 수 있습니다" maxlength="20" data-equal-id="hp_number" required=""><small><span style="color:red"><b>환전신청에 사용됩니다. 정확하게 입력해주세요. </b></span></small>
+									</div>
+								</div>
+							</div>											
+<div class="large-7 columns input">											
+<div class="row">
+									<div class="large-3 columns">
+										<label>은행</label>
+									</div>
+									<div class="large-9 columns">
+										<input id="bank_name" type="text" value="{{?it.values}}{{!it.values.bank_name}}{{?}}" name="user[bank_name]" autocomplete="off" pattern=".{2,200}" data-equal-id="bank_name" required="">
+									</div>
+								</div>
+							</div>	
+								
+<div class="large-7 columns input">
+<div class="row">
+									<div class="large-3 columns">
+										<label>예금주</label>
+									</div>
+									<div class="large-9 columns">
+										<input id="bank_type" type="text" value="{{?it.values}}{{!it.values.bank_type}}{{?}}" name="user[bank_type]" autocomplete="off" pattern=".{2,200}" data-equal-id="bank_type" required="">
+									</div>
+								</div>
+							</div>
+							
+<div class="large-7 columns input">				
+<div class="row">
+									<div class="large-3 columns">
+										<label>계좌번호</label>
+									</div>
+									<div class="large-9 columns">
+										<input id="bank_number" type="text" value="{{?it.values}}{{!it.values.bank_number}}{{?}}" name="user[bank_number]" autocomplete="off" pattern=".{7,200}" data-equal-id="bank_number" required=""><small><span style="color:red"><b>환전신청에 사용되며, 가입 시 입력한 정보로 환전됩니다. 이후 변경불가능 하니 환전계좌를 정확하게 입력해주세요.</b></span></small>
+									</div>
+								</div>
+							</div>
+							
+							
+<div class="large-7 columns input">				
+<div class="row">
+									<div class="large-3 columns">
+										<label>가입코드</label>
+									</div>
+									<div class="large-9 columns">
+										<input id="code" type="text" value="{{?it.values}}{{!it.values.code}}{{?}}" name="user[code]" autocomplete="off" pattern=".{3,200}" data-equal-id="code" required="">
+									</div>
+								</div>
+							</div>
+						
+<div class="large-7 columns input">				
+<div class="row">
+									<div class="large-3 columns">
+										<label>환전패스워드</label>
+									</div>
+									<div class="large-9 columns">
+										<input id="exch_password" type="text" value="{{?it.values}}{{!it.values.exch_password}}{{?}}" name="user[exch_password]" autocomplete="off" pattern=".{4,4}" data-equal-id="exch_password" required="">
+									</div>
+								</div>
+							</div>
+	
+                    <div class="large-7 columns">
+                        <div class="g-recaptcha" data-sitekey="{{=it.recaptchaKey}}" data-callback="enableSubmit"></div>
+                        <input id="registerSubmit" style="display: none" class="border-button blue" type="submit" value="Register"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+#}}
+{{#def.include('./template/main_old')}}

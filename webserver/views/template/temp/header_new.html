@@ -1,0 +1,49 @@
+<header>
+    <nav id="top-bar">
+
+        <div class="title">
+            <a href="/">
+                <h1>Test graph</h1>
+            </a>
+        </div>
+
+        <div class="user-login">
+            {{?it.user}}
+            <div class="balance-bits">
+                <span>원</span>
+                <span class="balance">{{#def.format:{n: it.user.balance_satoshis, decimals:0} }}</span>
+            </div>
+            <div class="username">
+                <a href="/account">{{=it.user.username}}</a>
+            </div>
+            {{??}}
+            <div class="register">
+                <a href="/register">계정생성</a>
+            </div>
+            <div class="login">
+                <a href="/login">로그인</a>
+            </div>
+            {{?}}
+        </div>
+
+        <div class="menu">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/request">Faucet</a></li>
+                <li class="nav-item"><a href="/leaderboard">랭킹</a></li>
+                <li class="nav-item"><a href="/stats">통계</a></li>
+                <li class="nav-item"><a href="/faq">Q&A</a></li>
+            </ul>
+        </div>
+
+<!--         <div class="menu-mobile">
+        	<ul class="nav-list">
+                <li class="nav-item"><a href="/request"><i class="fa fa-gift"></i></a></li>
+                <li class="nav-item"><a href="/leaderboard"><i class="fa fa-users"></i></a></li>
+                <li class="nav-item"><a href="/stats"><i class="fa fa-area-chart"></i></a></li>
+                <li class="nav-item"><a href="/faq"><i class="fa fa-info"></i></a></li>
+            </ul>
+        </div> -->
+
+
+    </nav>
+</header>

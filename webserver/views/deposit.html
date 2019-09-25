@@ -1,0 +1,32 @@
+{{##def.page_title = '출금 ' #}}
+{{##def.content:
+<script type="text/javascript">
+    function logout() {
+        if (document.getElementById('logout') ) {
+            if (confirm("정말로 로그아웃 하시겠습니까?")) {
+                document.getElementById("logout").submit();
+            }
+        }
+    }
+</script>
+<form action="/logout" method="post" id='logout'></form>
+    <div class="content row panel radius">
+        <div class="settings">
+            <div class="small-2 columns">
+                <ul class="menu">
+			<li class="active">
+                    <li>
+                        <a href="/security">유저설정</a>
+                    </li>
+
+                    <li>
+                        <a onclick="logout();">
+                            로그아웃
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+#}}
+{{#def.include('./template/main_old')}}

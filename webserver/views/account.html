@@ -1,0 +1,54 @@
+{{##def.page_title = 'Your account' #}}
+{{##def.content:
+<script type="text/javascript">
+    function logout() {
+        if (document.getElementById('logout') ) {
+            if (confirm("정말로 로그아웃 하시겠습니까?")) {
+                document.getElementById("logout").submit();
+            }
+        }
+    }
+</script>
+<form action="/logout" method="post" id='logout'></form>
+<div class="content row panel radius">
+
+    <div class="settings">
+        <div class="small-2 columns">
+            <ul class="menu">
+                <li>
+                    <a href="/security">유저설정</a>
+                </li>
+                <li>
+                    <a onclick="logout();">
+                        로그아웃
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="small-10 columns sets-content">
+            <br>
+            <h5>사용자 정보</h5>
+            <div id="statistics" class="row">
+                <div class="columns data large-3">
+                    <p><b>충전 금액 </b></p>
+                    <h5>{{#def.format:{n: it.user.deposits, decimals:0} }} KRW</h5>
+                </div>
+                <div class="columns data large-3">
+                    <p><b>환전 금액 </b></p>
+                    <h5>{{#def.format:{n: it.user.withdrawals, decimals:0} }} KRW</h5>
+                </div>
+                <div class="columns data large-3">
+                    <p><b>총 이익 </b></p>
+                    <h5>{{#def.format:{n: it.user.giveaways, decimals:0} }}</h5>
+                </div>
+                <div class="columns data large-3">
+                    <p><b>순 이익</b></p>
+                    <h5>{{#def.format:{n: it.user.net_profit, decimals:0} }} KRW</h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+#}}
+{{#def.include('./template/main_old')}}
