@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "CBuffer": "~0.1.4",
-    "async": "~0.8.0",
+    "async": "~2.6.4",
     "better-assert": "~1.0.0",
     "binary-search": "^1.2.0",
     "debug": "^2.2.0",
